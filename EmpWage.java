@@ -20,14 +20,27 @@ public class EmpWage implements IComputeWage
                 System.out.println("===================================================");
 
                 IComputeWage empWage = new EmpWage();
+		EmpWage emp = new EmpWage();
 
-                empWage.addCompanyWage("CapG", 30, 25, 100);
-                empWage.addCompanyWage("BridgeLabz", 20, 20, 120);
+		int capGEmpRate = 30, capGFullDayHr = 9;
+		int bridgeEmpRate = 20, bridgeGFullDayHr = 8;
+
+		empWage.addCompanyWage("CapG", capGEmpRate, 25, 100);
+                empWage.addCompanyWage("BridgeLabz", bridgeEmpRate, 20, 120);
                 empWage.computeEmpWage();
 
-		System.out.println("Total Wage for CapGemini => "+empWage.getTotalWage("CapG"));
-        }
+		emp.dailyWage("CapG", capGEmpRate, capGFullDayHr);
+		emp.dailyWage("BridgeLabz", bridgeEmpRate, bridgeGFullDayHr);
 
+		System.out.println("\nTotal Wage for CapGemini => "+empWage.getTotalWage("CapG"));
+        	System.out.println("Total Wage for BridgeLabz => "+empWage.getTotalWage("BridgeLabz"));
+	}
+
+	public void dailyWage(String company, int empRatePerHr, int fullDayHr)
+	{
+		System.out.println("\nFull Day Daily Wage of "+company+" is = "+(empRatePerHr*fullDayHr));
+		System.out.println("Part Time Daily Wage of "+company+" is = "+((empRatePerHr*fullDayHr)/2));
+	}
 
         public void addCompanyWage(String company, int empRatePerHr, int workingDays, int maxHrsPerMonth)
         {
