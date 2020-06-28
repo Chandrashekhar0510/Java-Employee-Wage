@@ -14,12 +14,32 @@ public class EmpWage
                 if(empCheck == present)
                 {
                         System.out.println("Employee is present");
-			salary = wagePerHrs * fullDayHrs;
+
+                        salary = wagePerHrs * fullDayHrs;
+
+                        System.out.println("Daily Employee Wage salary = "+salary);
+                }
+
+        //======================================================================================
+
+                int isPart = 0, isFull = 1, totalSalary = 0, empRate = 10;
+                int empHrs=0;
+
+                if(empCheck == isFull)
+                {
+                        empHrs = 16;
+                        System.out.println("Working full time....");
+                }
+                else if(empCheck == isPart)
+                {
+                        empHrs = 8;
+                        System.out.println("Working part time....");
                 }
                 else
                 {
-                        System.out.println("Employee is not present");
+                        System.out.println("Employee is absent....");
                 }
-		System.out.println("Daily Employee Wage salary = "+salary);
+                totalSalary = empHrs * empRate;
+                System.out.println("Total Salary = "+totalSalary);
 	}
 }
