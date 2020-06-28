@@ -1,4 +1,4 @@
-public class EmpWage
+public class EmpWage implements IComputeWage
 {
         public static final int isPart = 1, isFull = 2;
         int numOfCompany = 0;
@@ -16,22 +16,22 @@ public class EmpWage
                 System.out.println("===Welcome to Employee Wage Computation Program====");
                 System.out.println("===================================================");
 
-                EmpWage empWage = new EmpWage();
+                IComputeWage empWage = new EmpWage();
 
                 empWage.addCompanyWage("CapG", 30, 25, 100);
-                empWage.addCompanyWage("BridgeLabz", 20, 10, 120);
+                empWage.addCompanyWage("BridgeLabz", 20, 20, 120);
                 empWage.computeEmpWage();
         }
 
 
-        void addCompanyWage(String company, int empRatePerHr, int workingDays, int maxHrsPerMonth)
+        public void addCompanyWage(String company, int empRatePerHr, int workingDays, int maxHrsPerMonth)
         {
                 wageArray[numOfCompany] = new CompanyWage(company, empRatePerHr, workingDays, maxHrsPerMonth);
 
                 numOfCompany++;
         }
 
-        void computeEmpWage()
+        public void computeEmpWage()
         {
                 for (int i=0; i<numOfCompany; i++)
                 {
