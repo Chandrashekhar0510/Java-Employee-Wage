@@ -1,157 +1,79 @@
-import java.io.*;
-
-class EmpWage
+public class EmpWage
 {
-        public static int isPart = 1, isFull = 2, capGEmpRate = 20,bridgeEmpRate = 30;
-        public static int capGMaxHrs = 100, capGTotalDays=20;
-        public static int capGWage = 0, capGWagePerHrs=20, capGfullDayHrs=8;
+        public static final int isPart = 1, isFull = 2;
+        int numOfCompany = 0;
 
-        public static int bridgeMaxHrs = 130, bridgeTotalDays=24;
-        public static int bridgeWage = 0, bridgeWagePerHrs=30, bridgefullDayHrs=9;
+        CompanyWage[] wageArray;
 
-        public static void main(String[] args) throws IOException
+        public EmpWage()
         {
-                System.out.println("\n=========================================");
+                wageArray = new CompanyWage[10];
+        }
+
+        public static void main(String[] args)
+        {
+                System.out.println("\n=================================================");
                 System.out.println("===Welcome to Employee Wage Computation Program====");
-                System.out.println("===========================================");
+                System.out.println("===================================================");
 
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                EmpWage empWage = new EmpWage();
 
-                System.out.println("1.Check Employee Wage for Capgemini");
-                System.out.println("2.Check Employee Wage for BridgeLabz");
-                System.out.println("Enter the choice : ");
-                int choice = Integer.parseInt(br.readLine());
+                empWage.addCompanyWage("CapG", 30, 25, 100);
+                empWage.addCompanyWage("BridgeLabz", 20, 10, 120);
+                empWage.computeEmpWage();
+        }
 
-                switch(choice)
+
+        void addCompanyWage(String company, int empRatePerHr, int workingDays, int maxHrsPerMonth)
+        {
+                wageArray[numOfCompany] = new CompanyWage(company, empRatePerHr, workingDays, maxHrsPerMonth);
+
+                numOfCompany++;
+        }
+
+        void computeEmpWage()
+        {
+                for (int i=0; i<numOfCompany; i++)
                 {
-                        case 1:
-                                capGWage = capGWagePerHrs * capGfullDayHrs;
-                                System.out.println("\nFull time Daily Employee Wage salary = "+capGWage);
+                        wageArray[i].setTotalEmpWage(this.computeEmpWage(wageArray[i]));
 
-                                capGWage = (capGWagePerHrs * capGfullDayHrs)/2;
-                                System.out.println("Part time Employee Wage salary = "+capGWage);
-
-                                System.out.println("\nEmployee's working day and time...");
-                                getCapGEmpWage();
-                                break;
-                        case 2:
-                                bridgeWage = bridgeWagePerHrs * bridgefullDayHrs;
-                                System.out.println("\nFull time Daily Employee Wage salary = "+bridgeWage);
-
-                                bridgeWage = (bridgeWagePerHrs * bridgefullDayHrs)/2;
-                                System.out.println("\nPart time Employee Wage salary = "+bridgeWage);
-
-                                System.out.println("\nEmployee's working day and time...");
-                                getBridgeEmpWage();
-                                break;
-                        default:
-                                System.out.println("Enter valid choice....");
-                                break;
+                        System.out.println(wageArray[i]);
                 }
         }
 
-        //======================================================================================
-
-
-        public static int getCapGEmpWage()
+        int computeEmpWage(CompanyWage compWage)
         {
-                int capGEmpHrs=0, capGTotalEmpHrs=0,capGTotalWorkingDays=0;
+                int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
 
-                while(capGTotalEmpHrs <= capGMaxHrs && capGTotalWorkingDays < capGTotalDays)
+                while(totalEmpHrs <= compWage.maxHrsPerMonth && totalWorkingDays < compWage.workingDays)
                 {
-                        capGTotalWorkingDays++;
+                        totalWorkingDays++;
 
                         int empCheck = (int)Math.floor(Math.random() * 10) % 3;
 
                         switch(empCheck)
                         {
-                                case 1:
-                                        capGEmpHrs = 4;
+                                case isPart:
+                                        empHrs = 4;
                                         break;
-                                case 2:
-                                        capGEmpHrs = 8;
+                                case isFull:
+                                        empHrs = 8;
                                         break;
                                 default:
-                                        capGEmpHrs = 0;
+                                        empHrs = 0;
                                         break;
                         }
+                        totalEmpHrs += empHrs;
 
-                        capGTotalEmpHrs += capGEmpHrs;
-
-                        if(capGEmpHrs > 0)
+                        if(empHrs > 0)
                         {
-                                System.out.println("Days : "+capGTotalWorkingDays+"==================>Employee is present and working for : "+capGEmpHrs+"hrs");
+                                System.out.println("Days : "+totalWorkingDays+"==================>Employee is present and working for : "+empHrs+"hrs");
                         }
                         else
                         {
-                                System.out.println("Days : "+capGTotalWorkingDays+"==================>Employee is absent");
+                                System.out.println("Days : "+totalWorkingDays+"==================>Employee is absent");
                         }
                 }
-
-                int capGTotalWage = capGTotalEmpHrs * capGEmpRate;
-                System.out.println("\nTotal Emp Wage for Capgemini : "+capGTotalWage);
-
-                return capGTotalWage;
-        }
-
-        //==================================================================================
-
-        public static int getBridgeEmpWage()
-        {
-                int bridgeEmpHrs=0, bridgeTotalEmpHrs=0,bridgeTotalWorkingDays=0;
-
-                while(bridgeTotalEmpHrs <= bridgeMaxHrs && bridgeTotalWorkingDays < bridgeTotalDays)
-                {
-                        bridgeTotalWorkingDays++;
-
-                        int empCheck = (int)Math.floor(Math.random() * 10) % 3;
-
-                        switch(empCheck)
-                        {
-                                case 1:
-                                        bridgeEmpHrs = 4;
-                                        break;
-                                case 2:
-                                        bridgeEmpHrs = 9;
-                                        break;
-                                default:
-                                        bridgeEmpHrs = 0;
-                                        break;
-                        }
-
-                        bridgeTotalEmpHrs += bridgeEmpHrs;
-
-                        if(bridgeEmpHrs > 0)
-                        {
-                                System.out.println("Days : "+bridgeTotalWorkingDays+"==================>Employee is present and working for : "+bridgeEmpHrs+"hrs");
-                        }
-                        else
-                        {
-                                System.out.println("Days : "+bridgeTotalWorkingDays+"==================>Employee is absent");
-                        }
-                }
-
-                int bridgeTotalWage = bridgeTotalEmpHrs * bridgeEmpRate;
-                System.out.println("\nTotal Emp Wage for BridgeLabz : "+bridgeTotalWage);
-
-                return bridgeTotalWage;
+                return totalEmpHrs * compWage.empRatePerHr;
         }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
