@@ -1,40 +1,50 @@
 public class EmpWage
 {
+	public static int isPart = 1, isFull = 2, empRate = 20;
+        public static int maxHrs = 100, totalDays=20;
+
+        static int empCheck = (int)Math.floor(Math.random() * 10) % 2;
+
 	public static void main(String args[])
 	{
 		System.out.println("===========================================");
 		System.out.println("====Welcome to Employee Wage Problem=======");
 		System.out.println("===========================================");
 
-		int present = 1,wage = 0;
-                int salary = 0,wagePerHrs = 20,fullDayHrs = 8;
-
-                int empCheck = (int)Math.floor(Math.random() * 10) % 2;
-
-                if(empCheck == present)
+		int wage = 0, wagePerHrs=20, fullDayHrs=8;
+                if(empCheck == 1)
                 {
-                        System.out.println("Employee is present");
+                        System.out.println("Employee's working day and time...");
 
                         wage = wagePerHrs * fullDayHrs;
 
                         System.out.println("Daily Employee Wage salary = "+wage);
-                }
 
+                        getEmpWage();
+                }
+                else
+                {
+                        System.out.println("Employee is absent...");
+                }
+        }
         //======================================================================================
 
-                int isPart = 0, isFull = 1, totalSalary = 0, empRate = 20;
-                int empHrs=0,totalDays = 20,totalEmpHrs = 0,maxHrs = 100;
-		int day=0;
+        public static int getEmpWage()
+        {
+                int empHrs=0, totalEmpHrs=0,totalWorkingDays=0;
 
-                while(day<=totalDays && empHrs <= maxHrs)
+                while(totalEmpHrs <= maxHrs && totalWorkingDays < totalDays)
                 {
-                        day++;
+                        totalWorkingDays++;
+
+                        int empCheck = (int)Math.floor(Math.random() * 10) % 3;
+
                         switch(empCheck)
                         {
-                                case 0:
+                                case 1:
                                         empHrs = 4;
                                         break;
-                                case 1:
+                                case 2:
                                         empHrs = 8;
                                         break;
                                 default:
@@ -42,21 +52,16 @@ public class EmpWage
                                         break;
                         }
 
-                        salary = empHrs * empRate;
-                        totalSalary = totalSalary + salary + wage;
-                	totalEmpHrs = totalEmpHrs + empHrs;
-		}
+                        totalEmpHrs = totalEmpHrs + empHrs;
 
-                if(empCheck == 0)
-                {
-                        System.out.println("Working part time...");
-                        System.out.println("Total Salary = "+totalSalary);
+                        System.out.println("Days : "+totalWorkingDays+"\tEmp hrs : "+empHrs);
                 }
-                else
-                {
-                        System.out.println("Working full time...");
-                        System.out.println("Total Salary = "+totalSalary);
 
-                }
-	}
+                int totalWage = totalEmpHrs * empRate;
+                System.out.println("Total Emp Wage : "+totalWage);
+
+                return totalWage;
+        }
 }
+
+
