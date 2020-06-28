@@ -9,8 +9,6 @@ class EmpWage
         public static int bridgeMaxHrs = 130, bridgeTotalDays=24;
         public static int bridgeWage = 0, bridgeWagePerHrs=30, bridgefullDayHrs=9;
 
-        //static int empCheck = (int)Math.floor(Math.random() * 10) % 2;
-
         public static void main(String[] args) throws IOException
         {
                 System.out.println("\n=========================================");
@@ -28,16 +26,20 @@ class EmpWage
                 {
                         case 1:
                                 capGWage = capGWagePerHrs * capGfullDayHrs;
+                                System.out.println("\nFull time Daily Employee Wage salary = "+capGWage);
 
-                                System.out.println("\nDaily Employee Wage salary = "+capGWage);
+                                capGWage = (capGWagePerHrs * capGfullDayHrs)/2;
+                                System.out.println("Part time Employee Wage salary = "+capGWage);
 
                                 System.out.println("\nEmployee's working day and time...");
                                 getCapGEmpWage();
                                 break;
                         case 2:
                                 bridgeWage = bridgeWagePerHrs * bridgefullDayHrs;
+                                System.out.println("\nFull time Daily Employee Wage salary = "+bridgeWage);
 
-                                 System.out.println("\nDaily Employee Wage salary = "+bridgeWage);
+                                bridgeWage = (bridgeWagePerHrs * bridgefullDayHrs)/2;
+                                System.out.println("\nPart time Employee Wage salary = "+bridgeWage);
 
                                 System.out.println("\nEmployee's working day and time...");
                                 getBridgeEmpWage();
@@ -87,7 +89,7 @@ class EmpWage
                 }
 
                 int capGTotalWage = capGTotalEmpHrs * capGEmpRate;
-                System.out.println("\nTotal Emp Wage for month : "+capGTotalWage);
+                System.out.println("\nTotal Emp Wage for Capgemini : "+capGTotalWage);
 
                 return capGTotalWage;
         }
@@ -130,8 +132,26 @@ class EmpWage
                 }
 
                 int bridgeTotalWage = bridgeTotalEmpHrs * bridgeEmpRate;
-                System.out.println("\nTotal Emp Wage for month : "+bridgeTotalWage);
+                System.out.println("\nTotal Emp Wage for BridgeLabz : "+bridgeTotalWage);
 
                 return bridgeTotalWage;
         }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
