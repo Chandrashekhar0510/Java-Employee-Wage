@@ -20,6 +20,6 @@ public class  CompanyWage
 
         public String toString()
         {
-                return "\nTotal Employee wage for '"+company+"' is => "+totalEmpWage;
+                return "\nTotal Employee wage for '"+company+"' is => "+totalEmpWage+"\n";
         }
 }
