@@ -23,16 +23,18 @@ public class EmpWage
         //======================================================================================
 
                 int isPart = 0, isFull = 1, totalSalary = 0, empRate = 20;
-                int empHrs=0,totalDays = 20;
+                int empHrs=0,totalDays = 20,totalEmpHrs = 0,maxHrs = 100;
+		int day=0;
 
-                for(int day=1; day<=totalDays;day++)
+                while(day<=totalDays && empHrs <= maxHrs)
                 {
+                        day++;
                         switch(empCheck)
                         {
-                                case 1:
-                                        empHrs = 16;
-                                        break;
                                 case 0:
+                                        empHrs = 4;
+                                        break;
+                                case 1:
                                         empHrs = 8;
                                         break;
                                 default:
@@ -42,7 +44,8 @@ public class EmpWage
 
                         salary = empHrs * empRate;
                         totalSalary = totalSalary + salary + wage;
-                }
+                	totalEmpHrs = totalEmpHrs + empHrs;
+		}
 
                 if(empCheck == 0)
                 {
