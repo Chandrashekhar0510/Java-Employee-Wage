@@ -9,7 +9,7 @@ public class EmpWage
 		int present = 1;
 		int salary = 0,wagePerHrs = 20,fullDayHrs = 8;
 
-                double empCheck = Math.floor(Math.random() * 10) % 2;
+                int empCheck = (int)Math.floor(Math.random() * 10) % 2;
 
                 if(empCheck == present)
                 {
@@ -25,19 +25,19 @@ public class EmpWage
                 int isPart = 0, isFull = 1, totalSalary = 0, empRate = 10;
                 int empHrs=0;
 
-                if(empCheck == isFull)
+                switch(empCheck)
                 {
-                        empHrs = 16;
-                        System.out.println("Working full time....");
-                }
-                else if(empCheck == isPart)
-                {
-                        empHrs = 8;
-                        System.out.println("Working part time....");
-                }
-                else
-                {
-                        System.out.println("Employee is absent....");
+                        case 1:
+                                empHrs = 16;
+                                System.out.println("Working full time....");
+                                break;
+                        case 0:
+                                empHrs = 8;
+                                System.out.println("Working part time....");
+                                break;
+                        default:
+                                System.out.println("Employee is absent....");
+                                break;
                 }
                 totalSalary = empHrs * empRate;
                 System.out.println("Total Salary = "+totalSalary);
