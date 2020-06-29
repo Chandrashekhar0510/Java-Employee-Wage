@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class EmpWage implements IComputeWage
 {
@@ -13,7 +14,7 @@ public class EmpWage implements IComputeWage
 		companyWageMap = new HashMap<>();
         }
 
-        public static void main(String[] args)
+        public static void main(String[] args) throws Exception
         {
                 System.out.println("\n=================================================");
                 System.out.println("===Welcome to Employee Wage Computation Program====");
@@ -32,8 +33,22 @@ public class EmpWage implements IComputeWage
 		emp.dailyWage("CapG", capGEmpRate, capGFullDayHr);
 		emp.dailyWage("BridgeLabz", bridgeEmpRate, bridgeGFullDayHr);
 
-		System.out.println("\nTotal Wage for CapGemini => "+empWage.getTotalWage("CapG"));
-        	System.out.println("Total Wage for BridgeLabz => "+empWage.getTotalWage("BridgeLabz"));
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.println("\n1.Check Total Wage for Capgemini");
+                System.out.println("2.Check Total Wage for BridgeLabz");
+                System.out.print("Enter the choice : ");
+                int choice = Integer.parseInt(br.readLine());
+
+		switch(choice)
+		{
+			case 1:
+				System.out.println("\nTotal Wage for CapGemini => "+empWage.getTotalWage("CapG"));
+				break;
+			case 2:
+		        	System.out.println("\nTotal Wage for BridgeLabz => "+empWage.getTotalWage("BridgeLabz"));
+				break;
+		}
 	}
 
 	public void dailyWage(String company, int empRatePerHr, int fullDayHr)
